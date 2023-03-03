@@ -1,3 +1,4 @@
+const firstScore = 20;
 let score = 20;
 let highscore = 0;
 let secretNumber = Math.trunc(Math.random() * 500) + 1;
@@ -12,7 +13,8 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".number").style.width = `25rem`;
     document.querySelector(".message").style.fontSize = `6rem`;
     document.querySelector(".message").style.height = `9rem`;
-    highscore++;
+    highscore =
+      firstScore - Number(document.querySelector(".score").textContent);
     document.querySelector(".highscore").textContent = highscore;
     document.querySelector(".check").style.visibility = "hidden";
   } else if (score > 1) {
@@ -31,16 +33,18 @@ document.querySelector(".check").addEventListener("click", function () {
   }
 });
 
-document.querySelector(".again").addEventListener("click", function () {
-  secretNumber = Math.trunc(Math.random() * 500) + 1;
-  document.querySelector(".number").textContent = "?";
-  document.querySelector(".guess").value = " ";
-  score = 20;
-  document.querySelector(".check").style.visibility = "visible";
-  document.querySelector(".score").textContent = score;
-  document.querySelector("body").style.backgroundColor = "#222";
-  document.querySelector(".number").style.width = `15rem`;
-  document.querySelector(".message").style.fontSize = `2rem`;
-  document.querySelector(".message").style.height = `3rem`;
-  document.querySelector(".message").textContent = `Start guessing...`;
-});
+let again = document
+  .querySelector(".again")
+  .addEventListener("click", function () {
+    score = 20;
+    secretNumber = Math.trunc(Math.random() * 500) + 1;
+    document.querySelector(".number").textContent = "?";
+    document.querySelector(".guess").value = "";
+    document.querySelector(".check").style.visibility = "visible";
+    document.querySelector(".score").textContent = score;
+    document.querySelector("body").style.backgroundColor = "#222";
+    document.querySelector(".number").style.width = `15rem`;
+    document.querySelector(".message").style.fontSize = `2rem`;
+    document.querySelector(".message").style.height = `3rem`;
+    document.querySelector(".message").textContent = `Start guessing...`;
+  });
